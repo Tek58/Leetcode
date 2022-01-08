@@ -1,14 +1,16 @@
 class Solution:
     def cherryPickup(self, grid: List[List[int]]) -> int:
-        M, N = len(grid[0]), len(grid)
-
-        dp = [[[-10**9] * (M+2) for _ in range(M+2)] for _ in range(N)]
-        dp[0][1][M] = grid[0][0] + grid[0][M-1]
-        for j in range(1, N):
-            for i1, i2 in product(range(1, M+1), range(1, M+1)):
-                cand_prev = []
-                for shift1, shift2 in product([-1,0,1], [-1,0,1]):
-                    cand_prev.append(dp[j-1][i1 + shift1][i2 + shift2])
-                    dp[j][i1][i2] = (grid[j][i1-1] + grid[j][i2-1])//(1 + (i1 == i2)) + max(cand_prev)
-
-        return max(list(map(max, *dp[-1])))
+        m,n = len(grid),len(grid[0])
+        pos_cherry = {(0,n-1):grid[0][0]+grid[0][-1]}
+        for i in range(1,m):
+            new = {}
+            for (x,y),val in pos_cherry.items():
+                robot1 = [i for i in [x-1,x,x+1] if i>=0 and i<n]
+                robot2 = [i for i in [y-1,y,y+1] if i>=0 and i<n]
+                for a in robot1:
+                    for b in robot2:
+                        new_val = val + grid[i][a] + grid[i][b] * (a!=b)
+                        if (a,b) not in new or new_val > new[(a,b)]:
+                            new[(a,b)] = new_val
+            pos_cherry = new
+        return max(pos_cherry.values())
