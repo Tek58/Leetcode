@@ -6,19 +6,19 @@
 #         self.right = right
 class Solution:
     def sumRootToLeaf(self, root: Optional[TreeNode]) -> int:
-        stack = [[root, ""]] 
-        result = 0 
+        self.path_to_leaf = []
+        self.total_binary_sum = 0
         
-        while stack:
-            current, path = stack.pop(0)
+        def traverse(node, path):
+            if node.left:
+                traverse(node.left, path+str(node.val))
+            if node.right:
+                traverse(node.right, path+str(node.val))
             
-            if current.left:
-                stack.append([current.left, path+str(current.val)])
-            if current.right:
-                stack.append([current.right, path+str(current.val)])
-            
-            if not current.left and not current.right:
-                path += str(current.val)
-                result += int(path, 2)
-                
-        return result
+            if not node.left and not node.right:
+                path += str(node.val)
+                self.path_to_leaf.append(path)
+                self.total_binary_sum += int(path, 2)
+        
+        traverse(root, "")
+        return self.total_binary_sum
