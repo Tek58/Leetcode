@@ -1,25 +1,11 @@
 class Solution:
     def minJumps(self, arr: List[int]) -> int:
-        n = len(arr)
-        d = defaultdict(list)
-        for i, num in enumerate(arr):
-            d[num].append(i)
-            
-        queue = deque([(0, 0)])
-        visited, visited_groups = set(), set()
-        
-        while queue:
-            steps, index = queue.popleft()
-            if index == n - 1: return steps
-            
-            for neib in [index - 1, index + 1]:
-                if 0 <= neib < n and neib not in visited:
-                    visited.add(neib)
-                    queue.append((steps + 1, neib))
-            
-            if arr[index] not in visited_groups:
-                for neib in d[arr[index]]:
-                    if neib not in visited:
-                        visited.add(neib)
-                        queue.append((steps + 1, neib))
-                visited_groups.add(arr[index])
+        indices = collections.defaultdict(list)
+        for i, a in enumerate(arr):
+            indices[a].append(i)
+        done, now = {-1}, {0}
+        for steps in itertools.count():
+            done |= now
+            if len(arr) - 1 in done:
+                return steps
+            now = {j for i in now for j in [i-1, i+1] + indices.pop(arr[i], [])} - done
