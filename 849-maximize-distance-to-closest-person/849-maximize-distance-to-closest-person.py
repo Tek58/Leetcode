@@ -15,7 +15,7 @@ class Solution:
                 first = second
                 second += 1
                 
-        if seats[second-1] != 1:
+        if seats[second-1] != len(seats)-1  and seats[second-1] != 1:
             res = max(res, (len(seats) -1 - first))
             
         return res
