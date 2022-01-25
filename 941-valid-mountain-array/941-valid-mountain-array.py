@@ -1,17 +1,18 @@
 class Solution:
-    def validMountainArray(self, arr: List[int]) -> bool:
-        if len(arr) < 3:
+    def validMountainArray(self, A: List[int]) -> bool:
+        if len(A) < 3 or A[0]>=A[1]:
             return False
-        mountain = 0
-        for i in range(1, len(arr)-1):
-            if arr[i-1] < arr[i] > arr[i+1]:
-                mountain += 1
-            elif arr[i-1] == arr[i]:
-                return False
+			
+        uphill = True
         
-        if mountain == 1 and arr[-1] < arr[-2] and arr[0] < arr[1]:
-            return True
-        return False
+        for i in range(1,len(A)):
+            if uphill:
+                if A[i-1]>=A[i]:
+                    uphill = False
+            if not uphill:
+                if A[i-1]<=A[i]:
+                    return False
+        return not uphill
     
             
             
