@@ -12,6 +12,6 @@ class Solution:
                 val = -(j+k)
                 if val in container:
                     counter += container[val]
-
+                    
         return counter
         
