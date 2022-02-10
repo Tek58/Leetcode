@@ -13,5 +13,4 @@ class Solution:
                 container[val] += 1
             current += i
 
-        print(container)
         return counter
