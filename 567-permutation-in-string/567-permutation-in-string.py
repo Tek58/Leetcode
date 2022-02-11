@@ -1,17 +1,10 @@
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
-        A = [ord(x) - ord('a') for x in s1]
-        B = [ord(x) - ord('a') for x in s2]
-
-        target = [0] * 26
-        for x in A:
-            target[x] += 1
-
-        window = [0] * 26
-        for i, x in enumerate(B):
-            window[x] += 1
-            if i >= len(A):
-                window[B[i - len(A)]] -= 1
-            if window == target:
-                return True
-        return False
+        d1, d2 = Counter(s1), Counter(s2[:len(s1)])
+        for start in range(len(s1), len(s2)):
+            if d1 == d2: return True
+            d2[s2[start]] += 1
+            d2[s2[start-len(s1)]] -= 1
+            if d2[s2[start-len(s1)]] == 0: 
+                del d2[s2[start-len(s1)]]
+        return d1 == d2
