@@ -1,16 +1,14 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        result = [[]]
-        start = (2**(len(nums))) + 1
-        end = 2**(len(nums) + 1)
-        for i in range(start, end):
-            temp = []
-            val = bin(i)[3:]
-            for i in range(len(val)):
-                if val[i] == "1":
-                    temp.append(nums[i])
-            result.append(temp)
-        return result
-                
-                
-            
+        ans = []
+        self.solve( 0, [], nums, ans)
+        return ans
+        
+    def solve(self, idx, subset, nums, ans):
+        if idx == len(nums):
+            ans.append(subset[:])
+        else:
+            subset.append(nums[idx])
+            self.solve( idx + 1, subset, nums, ans)
+            subset.pop()
+            self.solve( idx + 1, subset, nums, ans)
