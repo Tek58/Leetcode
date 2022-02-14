@@ -14,7 +14,7 @@ class Solution:
     def helper(self, node, depth, answer):
         if not node:
             return 
-        if not node.left and not node.right:
+        if node.left == node.right:
             answer[0] = max(answer[0], depth)
         self.helper(node.left, depth+1, answer)
         self.helper(node.right, depth+1, answer)
