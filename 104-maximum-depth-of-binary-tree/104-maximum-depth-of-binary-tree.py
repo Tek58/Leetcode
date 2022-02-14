@@ -6,16 +6,17 @@
 #         self.right = right
 class Solution:
     def maxDepth(self, root: TreeNode) -> int:
-        depth = 1
-        answer= [0]
-        self.helper(root, depth, answer)
-        return answer[0]
-    
-    def helper(self, node, depth, answer):
-        if not node:
-            return 
-        if node.left == node.right:
-            answer[0] = max(answer[0], depth)
-        self.helper(node.left, depth+1, answer)
-        self.helper(node.right, depth+1, answer)
+        depth = 0
+        level = [root] if root else []
+        while level:
+            depth += 1
+            queue = []
+            for el in level:
+                if el.left:
+                    queue.append(el.left)
+                if el.right:
+                    queue.append(el.right)
+            level = queue
+            
+        return depth
         
