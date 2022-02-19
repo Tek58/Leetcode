@@ -1,5 +1,6 @@
 class Solution:
     def largestRectangleArea(self, height):
+        height.append(0)
         maxRectangle = 0
         rectangle = []
         for i in range(len(height)):
@@ -9,9 +10,6 @@ class Solution:
                 maxRectangle = max(maxRectangle, (lastHeight*(i - lastIndex)))
                 index = lastIndex
             rectangle.append((curr, index))
-        
-        for h, i in rectangle:
-            maxRectangle = max(maxRectangle, (h*((len(height) - i))))
             
         return maxRectangle
                 
