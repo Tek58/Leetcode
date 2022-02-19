@@ -1,14 +1,20 @@
 class Solution:
-    def minimumDeviation(self, A: List[int]) -> int:
-        pq = []
-        for a in A:
-            heapq.heappush(pq, [a // (a & -a), a])
-        res = float('inf')
-        ma = max(a for a, a0 in pq)
-        while len(pq) == len(A):
-            a, a0 = heapq.heappop(pq)
-            res = min(res, ma - a)
-            if a % 2 == 1 or a < a0:
-                ma = max(ma, a * 2)
-                heapq.heappush(pq, [a * 2, a0])
-        return res
+    def minimumDeviation(self, nums: List[int]) -> int:
+        heap = []
+        for num in nums:
+            tmp = num
+            while tmp%2 == 0: tmp//=2
+            heap.append((tmp, max(num, tmp*2)))
+        
+        Max = max(i for i,j in heap)
+        heapify(heap)
+        ans = float("inf")
+
+        while len(heap) == len(nums):
+            num, limit = heappop(heap)
+            ans = min(ans, Max - num)
+            if num < limit:
+                heappush(heap, (num*2, limit))
+                Max = max(Max, num*2)
+            
+        return ans
