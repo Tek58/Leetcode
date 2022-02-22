@@ -17,8 +17,6 @@ class Trie:
             if curr.children[indexChar] == None:
                 newNode = Node()
                 curr.children[indexChar] = newNode
-            #     curr = newNode
-            # else:
             curr = curr.children[indexChar]
         curr.isEnd = True
 
@@ -28,8 +26,7 @@ class Trie:
             indexChar = self.getIndex(char)
             if curr.children[indexChar] == None:
                 return False
-            else:
-                curr = curr.children[indexChar]
+            curr = curr.children[indexChar]
         return curr.isEnd
         
     def startsWith(self, prefix: str) -> bool:
@@ -38,8 +35,7 @@ class Trie:
             indexChar = self.getIndex(char)
             if curr.children[indexChar] == None:
                 return False
-            else:
-                curr = curr.children[indexChar]
+            curr = curr.children[indexChar]
         return True
 
 # Your Trie object will be instantiated and called as such:
