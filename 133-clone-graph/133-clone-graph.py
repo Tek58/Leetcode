@@ -11,12 +11,12 @@ class Solution:
         if not node:
             return node
         m = {node: Node(node.val)}
-        deque = collections.deque([node])
-        while deque:
-            n = deque.popleft()
-            for neigh in n.neighbors:
-                if neigh not in m:
-                    deque.append(neigh)
-                    m[neigh] = Node(neigh.val)
-                m[n].neighbors.append(m[neigh])
+        self.dfs(node, m)
         return m[node]
+    
+    def dfs(self, node, m):
+        for neigh in node.neighbors:
+            if neigh not in m:
+                m[neigh] = Node(neigh.val)
+                self.dfs(neigh, m)
+            m[node].neighbors.append(m[neigh])
