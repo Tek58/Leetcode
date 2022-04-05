@@ -1,9 +1,18 @@
 class Solution:
     def deleteAndEarn(self, nums: List[int]) -> int:
-        points =  Counter(nums)
-        prev , curr= 0, 0
-        maxVal = max(points.keys()) + 1
-        for value in range(maxVal):
-            prev, curr = curr, max(prev + value * points[value], curr)
-        return curr
-    
+        store = defaultdict(int)
+        maxNum = nums[0]
+        for i in nums:
+            store[i] += i
+            maxNum = max(maxNum, i)
+            
+        @cache
+        def maxPoint(num):
+            if num == 0:
+                return 0
+            if num == 1:
+                return store[1]
+            return max(maxPoint(num-1), maxPoint(num-2) + store[num])
+        
+        return maxPoint(maxNum)
+        
