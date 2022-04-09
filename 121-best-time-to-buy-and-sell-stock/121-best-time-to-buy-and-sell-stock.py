@@ -1,8 +1,14 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        min_price = float("inf")
-        max_profit = 0
-        for i in prices:
-            min_price = min(min_price, i)
-            max_profit = max(max_profit, i-min_price)
-        return max_profit
+        if len(prices) == 1:
+            return 0
+        maxProfit = 0
+        buyingDayIndex = 0
+        sellingDayIndex = 1
+        while sellingDayIndex < len(prices):
+            if prices[sellingDayIndex] <= prices[buyingDayIndex]:
+                buyingDayIndex = sellingDayIndex
+            else:
+                maxProfit = max(maxProfit, (prices[sellingDayIndex] - prices[buyingDayIndex]))
+            sellingDayIndex += 1
+        return maxProfit            
