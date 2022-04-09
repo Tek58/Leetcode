@@ -1,17 +1,13 @@
 class Solution:
     def isValid(self, s: str) -> bool:
+        parentesis = { '(' : ')', '{' : '}', '[' : ']' }
         stack = []
-        opening = set(["(","{", "["])
         for i in s:
-            if i in opening:
+            if i in parentesis:
                 stack.append(i)
             else:
-                if len(stack) != 0:
-                    curr = stack[-1]
-                    if ( i == ')' and curr == '(' ) or  ( i == '}' and curr == '{' ) or ( i == ']' and curr == "[" ):
-                        stack.pop()
-                    else:
-                        return False
+                if stack and parentesis[stack[-1]] == i:
+                    stack.pop()
                 else:
                     return False
-        return len(stack) == 0
+        return True if not stack else False
