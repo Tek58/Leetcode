@@ -3,9 +3,9 @@ class Solution:
         one = 1
         two = 1
         for i in range(n-1):
-            temp = one
-            one += two
-            two = temp
+            temp = two
+            two += one
+            one = temp
         
-        return one
+        return two
         
