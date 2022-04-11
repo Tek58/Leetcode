@@ -8,9 +8,8 @@ class Solution:
         
         res = []
         for i in range(len(nums), 0, -1):
-            if len(res) == k:
-                return res
-            elif freq[i]:
-                res += freq[i]
+            for n in freq[i]:
+                res.append(n)
+                if len(res) == k:
+                    return res
                 
-        return res
