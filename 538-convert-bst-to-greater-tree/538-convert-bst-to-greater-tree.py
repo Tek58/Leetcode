@@ -9,7 +9,7 @@ class Solution:
         self.total = 0
     def convertBST(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         if not root:
-            return
+            return 
         self.convertBST(root.right)
         self.total += root.val
         root.val = self.total
