@@ -1,10 +1,10 @@
 class Codec:
     def __init__(self):
         self.url = {}
+        self.suffix_set = "abcdefghijklmnopqrstuvwzyz"
 
     def encode(self, longUrl):
-        suffix_set = "abcdefghijklmnopqrstuvwzyz"
-        tiny_url = "http://tinyurl.com/".join(random.choice(suffix_set) for _ in range(6))
+        tiny_url = "http://tinyurl.com/".join(random.choice(self.suffix_set) for _ in range(6))
         self.url[tiny_url] = longUrl
         return tiny_url
 
