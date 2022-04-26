@@ -1,10 +1,17 @@
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
-        d1, d2 = Counter(s1), Counter(s2[:len(s1)])
-        for start in range(len(s1), len(s2)):
-            if d1 == d2: return True
-            d2[s2[start]] += 1
-            d2[s2[start-len(s1)]] -= 1
-            if d2[s2[start-len(s1)]] == 0: 
-                del d2[s2[start-len(s1)]]
-        return d1 == d2
+        s1Count = Counter(s1)
+        s2Count = Counter(s2[:len(s1)-1])
+        left = 0
+        for right in range(len(s1)-1, len(s2)):
+            s2Count[s2[right]] += 1
+            flag = True
+            for key, val in s1Count.items():
+                if (key in s2Count and s2Count[key] != val) or key not in s2Count:
+                    flag = False
+                    break
+            if flag:
+                return flag
+            s2Count[s2[left]] -= 1
+            left += 1              
+        return False
