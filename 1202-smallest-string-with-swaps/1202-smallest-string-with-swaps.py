@@ -1,11 +1,11 @@
 class Solution:
     def smallestStringWithSwaps(self, s: str, pairs: List[List[int]]) -> str:           
         n = len(s)
-        adj_list = [[] for _ in range(n)]
+        adj_list = defaultdict(list)
         for i, j in pairs:
             adj_list[i].append(j)
             adj_list[j].append(i)
-        visited = [0 for _ in range(n)]
+        visited = defaultdict(int)
         store = list(s)
         
         def dfs(i):
