@@ -1,7 +1,18 @@
 class Solution:
     def backspaceCompare(self, s: str, t: str) -> bool:
-        def back(res, c):
-            if c != '#': res.append(c)
-            elif res: res.pop()
-            return res
-        return reduce(back, s, []) == reduce(back, t, [])
+        def stack(s, stack):
+            for char in s:
+                if char is not "#":
+                    stack.append(char)
+                else:
+                    if not stack:
+                        continue
+                    stack.pop()
+            return stack
+
+        l1 = stack(s, [])
+        l2 = stack(t, [])
+        return l1 == l2
+        
+    
+        
