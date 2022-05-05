@@ -1,32 +1,27 @@
 class MyStack:
 
     def __init__(self):
-        self.value = []
-        self.size = 0
+        self.queue = deque()
         
-
     def push(self, x: int) -> None:
-        self.size = self.size + 1
-        self.value = [x] + self.value
+        self.queue.append(x)
         
-
     def pop(self) -> int:
-        if self.size == 0:
-            return
-        self.size = self.size - 1
-        val = self.value[0]
-        self.value = self.value[1:]
-        return val
+        for i in range(len(self.queue) - 1):
+            val = self.queue.popleft()
+            self.queue.append(val)
+        return self.queue.popleft()
         
-
     def top(self) -> int:
-        return self.value[0]
-        
+        # x = None
+        # for i in range(len(self.queue)):
+        #     x = self.queue.popleft()
+        #     self.queue.append(x)    
+        # return x
+        return self.queue[-1]
 
     def empty(self) -> bool:
-        if self.size == 0:
-            return True
-        return False
+        return True if not (self.queue) else False
     
 # Your MyStack object will be instantiated and called as such:
 # obj = MyStack()
@@ -34,3 +29,5 @@ class MyStack:
 # param_2 = obj.pop()
 # param_3 = obj.top()
 # param_4 = obj.empty()
+        
+
