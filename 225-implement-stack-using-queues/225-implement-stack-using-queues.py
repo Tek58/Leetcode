@@ -13,11 +13,6 @@ class MyStack:
         return self.queue.popleft()
         
     def top(self) -> int:
-        # x = None
-        # for i in range(len(self.queue)):
-        #     x = self.queue.popleft()
-        #     self.queue.append(x)    
-        # return x
         return self.queue[-1]
 
     def empty(self) -> bool:
