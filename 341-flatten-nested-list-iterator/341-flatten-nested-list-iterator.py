@@ -21,18 +21,26 @@
 #        """
 
 class NestedIterator:
-    def __init__(self, nestedList: [NestedInteger]):
-        self.stack = nestedList[::-1]
-    
-    def next(self) -> int:
-        return self.stack.pop().getInteger()
-        
-    def hasNext(self) -> bool:
-        while self.stack:
-            top = self.stack[-1]
-            if top.isInteger():
-                return True
-            self.stack = self.stack[:-1] + top.getList()[::-1]
+    def __init__(self, nestedList):
+        self.stack = [[nestedList, 0]]
+
+    def next(self):
+        nestedList, i = self.stack[-1]
+        self.stack[-1][1] += 1
+        return nestedList[i].getInteger()
+
+    def hasNext(self):
+        stack = self.stack
+        while stack:
+            nestedList, i = stack[-1]
+            if i == len(nestedList):
+                stack.pop()
+            else:
+                x = nestedList[i]
+                if x.isInteger():
+                    return True
+                stack[-1][1] += 1
+                stack.append([x.getList(), 0])
         return False
          
 
