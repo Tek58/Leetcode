@@ -1,17 +1,8 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        result = []
-        candidates = sorted(candidates)
-        def dfs(remain, stack):
-            if remain == 0:
-                result.append(stack)
-                return 
-
-            for item in candidates:
-                if item > remain: break
-                if stack and item < stack[-1]: continue
-                else:
-                    dfs(remain - item, stack + [item])
-
-        dfs(target, [])
-        return result
+        dp = [[] for _ in range(target+1)]
+        for c in candidates:                                 
+            for i in range(c, target+1):                      
+                if i == c: dp[i].append([c])
+                for comb in dp[i-c]: dp[i].append(comb + [c]) 
+        return dp[-1]
