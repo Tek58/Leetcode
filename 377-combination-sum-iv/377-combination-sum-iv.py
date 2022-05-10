@@ -7,5 +7,4 @@ class Solution:
             for n in nums:
                 dp[i] += dp[i-n]
         
-        print(dp)
         return dp[target]
