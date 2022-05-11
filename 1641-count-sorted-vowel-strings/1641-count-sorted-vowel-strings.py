@@ -1,4 +1,8 @@
 class Solution:
     def countVowelStrings(self, n: int) -> int:
-        return (n + 1) * (n + 2) * (n + 3) * (n + 4) // (4*3*2*1)
+        dp = [0, 1, 1, 1, 1, 1]
+        for i in range(1, n + 1):
+            for k in range(1, 6):
+                dp[k] += dp[k - 1]
+        return dp[5]
     
