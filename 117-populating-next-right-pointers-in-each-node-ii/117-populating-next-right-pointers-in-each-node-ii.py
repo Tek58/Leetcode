@@ -13,7 +13,7 @@ class Solution:
         if not root:
             return None
         queue = deque([root])
-        dummy = Node(-101)
+        dummy = Node(float("-inf"))
         while queue:
             prev = dummy
             for i in range(len(queue)):
