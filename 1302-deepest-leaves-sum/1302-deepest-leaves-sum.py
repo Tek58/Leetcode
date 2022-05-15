@@ -7,19 +7,24 @@
 class Solution:
     def deepestLeavesSum(self, root: Optional[TreeNode]) -> int:
         deepest = float("-inf")
-        store = defaultdict(int)
+        res, deepest = root.val, 0
         queue = deque([(root, 0)])
         while queue:
             curr, level = queue.pop()
-            store[level] += curr.val
-            deepest = max(deepest, level)
+            if level == deepest:
+                res += curr.val
+            
+            if level > deepest:
+                deepest = level
+                res = curr.val
+                
             if curr.left:
                 queue.append((curr.left, level+1))
             
             if curr.right:
                 queue.append((curr.right, level+1))
         
-        return store[deepest]
+        return res
         
                 
             
