@@ -13,15 +13,17 @@ class Solution:
             return 0 <= row < n and 0 <= col < n and (row, col) not in visited and grid[row][col] == 0
         
         while queue:
-            x, y, level = queue.popleft()
-            if (x, y) == (n-1, n-1):
-                res = min(res, level)
-            else:
-                for direction in directions:
-                    newX = x + direction[0]
-                    newY = y + direction[1]
-                    if isValid(newX, newY):
-                        visited.add((newX, newY))
-                        queue.append((newX, newY, level+1))
-        return -1 if res == float("inf") else res
+            for i in range(len(queue)):
+                x, y, level = queue.popleft()
+                if (x, y) == (n-1, n-1):
+                    return level
+                else:
+                    for direction in directions:
+                        newX = x + direction[0]
+                        newY = y + direction[1]
+                        if isValid(newX, newY):
+                            visited.add((newX, newY))
+                            queue.append((newX, newY, level+1))
+                        
+        return -1
             
