@@ -21,5 +21,4 @@ class Solution:
                         low[node] = min(low[neighbor], low[node])
                     
         dfs(0, -1, 1)
-        
         return res
