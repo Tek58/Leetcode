@@ -6,7 +6,7 @@ class Solution:
         def isValid(newRow, newCol, row, col):
             return 0 <= newRow < m and 0 <= newCol < n and matrix[row][col] < matrix[newRow][newCol]
         
-        @cache
+        @lru_cache(maxsize = None)
         def dfs(row, col):
             temp_res = 1
             for direction in directions:
