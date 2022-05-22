@@ -1,10 +1,11 @@
 class Solution:
     def countSubstrings(self, s: str) -> int:
-        size, counter = len(s), 0
+        counter = 0
         
-        for idx in range(size):
-            for left_c, right_c in ( (idx, idx), (idx, idx+1) ):
-                while left_c >= 0 and right_c < size and s[left_c] == s[right_c]:
+        for i in range(len(s)):
+            for j in range(2):
+                left_c, right_c = i, i + j
+                while left_c >= 0 and right_c < len(s) and s[left_c] == s[right_c]:
                     counter += 1
                     left_c, right_c = left_c - 1, right_c + 1
                     
