@@ -4,7 +4,8 @@ class Solution:
         for i in strs:
             res = [i.count("0"), i.count("1")]
             store.append(res)
-        @cache
+            
+        @lru_cache(None)
         def dp(i, m, n):
             if i == len(strs):
                 return 0
