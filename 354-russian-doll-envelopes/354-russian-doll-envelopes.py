@@ -1,7 +1,6 @@
 class Solution:
     def maxEnvelopes(self, envelopes: List[List[int]]) -> int:
         envelopes.sort(key=lambda x: (x[0], -x[1]))
-        # print(envelopes)
             
         res = []
         for envelop in envelopes:
@@ -16,5 +15,4 @@ class Solution:
             else:
                 res.append(envelop)
                 
-        # print(res)
         return len(res)
