@@ -1,24 +1,18 @@
 class Solution:
+    def __init__(self):
+        self.longest = ""
+        self.longestLen = 0
     def longestPalindrome(self, s: str) -> str:
-        longest = ""
-        longestLen = 0
+        def isPalindrome(left, right):
+            while left >= 0 and right < len(s) and s[left] == s[right]:
+                if (right - left + 1) > self.longestLen:
+                    self.longest = s[left:right+1]
+                    self.longestLen = right - left + 1
+                left -= 1
+                right += 1
+                
         for i in range(len(s)):
-            left = right = i
-            while left >= 0 and right < len(s) and s[left] == s[right]:
-                if (right - left + 1) > longestLen:
-                    longest = s[left:right+1]
-                    longestLen = right - left + 1
-                left -= 1
-                right += 1
+            isPalindrome(i, i)
+            isPalindrome(i, i + 1)
             
-            left , right = i, i + 1
-            while left >= 0 and right < len(s) and s[left] == s[right]:
-                if (right - left + 1) > longestLen:
-                    longest = s[left:right+1]
-                    longestLen = right - left + 1
-                left -= 1
-                right += 1
-            
-        return longest
-            
-            
+        return self.longest
