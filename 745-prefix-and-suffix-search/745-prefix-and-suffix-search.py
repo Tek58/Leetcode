@@ -4,7 +4,6 @@ class Trie:
         self.idx = -1
 
 class WordFilter(object):
-
     def __init__(self, words):
         self.trie = Trie()
         
