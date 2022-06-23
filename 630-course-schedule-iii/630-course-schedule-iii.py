@@ -1,7 +1,7 @@
 class Solution:
     def scheduleCourse(self, courses: List[List[int]]) -> int:
         courses.sort(key=lambda x:x[1])
-        print(courses)
+        # print(courses)
         heap = []
         timeSofar = 0
         for course in courses:
@@ -16,7 +16,7 @@ class Solution:
                     timeSofar += course[0]
                 else:
                     heappush(heap, -top)
-        print(heap)
+        # print(heap)
         return len(heap)
                 
             
