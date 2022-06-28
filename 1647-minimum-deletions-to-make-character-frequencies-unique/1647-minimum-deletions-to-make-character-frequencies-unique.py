@@ -1,6 +1,7 @@
 class Solution:
     def minDeletions(self, s: str) -> int:
         store = Counter(s).values()
+        print(store)
         visited = set()
         result  = 0 
         mx = float("-inf") 
