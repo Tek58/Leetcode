@@ -9,9 +9,6 @@ class Solution:
         if len(inorder) == 0:
             return None
         
-        if len(preorder) == 1:
-            return TreeNode(preorder[0])
-        
         idx = inorder.index(preorder.pop(0))
         node = TreeNode(inorder[idx])
         
