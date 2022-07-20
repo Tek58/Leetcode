@@ -1,19 +1,19 @@
 class Solution:
     def numMatchingSubseq(self, s: str, words: List[str]) -> int:
-        store = defaultdict(list)
+        @lru_cache(None)
+        def exists(char, index):
+            return s.find(char, index)
 
-        for word in words:
-            store[word[0]].append(word)
+        def isSubsequence(word):
+            index = -1
+            for ch in word:
+                index = exists(ch, index + 1)
+                if index == -1:
+                    return False
+            return True
 
         count = 0
-        for ch in s:
-            curr = store[ch]
-            store[ch] = []
-            while curr:
-                word = curr.pop()[1:]
-                if len(word) == 0:
-                    count += 1
-                else:
-                    store[word[0]].append(word)
-
+        for word in words:
+            if isSubsequence(word):
+                count+= 1
         return count
