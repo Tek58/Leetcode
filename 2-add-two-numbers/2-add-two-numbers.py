@@ -19,7 +19,7 @@ class Solution:
                 num2 = l2.val
                 l2 = l2.next
             ans = num1 + num2 + carry
-            current = ans %10
+            current = ans % 10
             head.next = ListNode(current)
             carry = ans // 10
             head = head.next
