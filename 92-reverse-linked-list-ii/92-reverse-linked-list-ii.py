@@ -19,7 +19,6 @@ class Solution:
             leftIndex += 1
             rightIndex -= 1
         
-        # print(res)
         dummyNode = ListNode(res[0])
         head = dummyNode
         for i in range(1,len(res)):
