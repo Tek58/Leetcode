@@ -6,7 +6,6 @@ public:
         int sIndex = -1;
         for(int i = 0; i < nums.size(); i++){
             bool found = nums[i] == target;
-            // cout << nums[i] << "  " << fIndex << "  " << sIndex << "  " <<  first << "  " << endl; 
             if(!first && found){
                 fIndex = i;
                 first = true;
@@ -16,7 +15,6 @@ public:
                 sIndex = i;
             }
         
-            
         }
         vector<int> res({fIndex, sIndex});
         return res;
