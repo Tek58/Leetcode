@@ -5,19 +5,17 @@
 #         self.left = left
 #         self.right = right
         
-class Solution(object):
-    def __init__(self):
-        self.prev_res = None
-        
+class Solution(object):        
     def flatten(self, root):
-        def inorder(node):
-            if not node:
-                return
-            inorder(node.right)
-            inorder(node.left)
-            node.right = self.prev_res
-            node.left = None
-            self.prev_res = node
-            
-        inorder(root)
-        
+        if not root:
+            return
+        stack = [root]
+        while len(stack):
+            root = stack.pop()
+            if root.right: 
+                stack.append(root.right)
+            if root.left: 
+                stack.append(root.left)
+                
+            root.left = None
+            root.right = stack[-1] if len(stack) else None
