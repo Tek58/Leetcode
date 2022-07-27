@@ -7,15 +7,14 @@
         
 class Solution(object):        
     def flatten(self, root):
-        if not root:
-            return
-        stack = [root]
-        while len(stack):
-            root = stack.pop()
-            if root.right: 
-                stack.append(root.right)
-            if root.left: 
-                stack.append(root.left)
-                
-            root.left = None
-            root.right = stack[-1] if len(stack) else None
+        if root:
+            stack = [root]
+            while len(stack):
+                root = stack.pop()
+                if root.right: 
+                    stack.append(root.right)
+                if root.left: 
+                    stack.append(root.left)
+
+                root.left = None
+                root.right = stack[-1] if len(stack) else None
