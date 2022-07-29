@@ -8,7 +8,6 @@ class Solution:
         container = {}
         result = ""
 
-
         for i in range(len(pattern)):
             if pattern[i] in container:
                 container[i] = container[pattern[i]]
