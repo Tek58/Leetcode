@@ -14,9 +14,8 @@ class NumArray(object):
         :type val: int
         :rtype: None
         """
-        n = self.nums[index] 
+        self.total += val - self.nums[index]
         self.nums[index] = val
-        self.total = self.total - n + val
 
         
 
