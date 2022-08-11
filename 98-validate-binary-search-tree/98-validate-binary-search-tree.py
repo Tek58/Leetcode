@@ -14,8 +14,6 @@ class Solution(object):
             res.append(node.val)
             helper(node.right)
         helper(root)
-        # print(res, sorted(res))
         count = Counter(res)
-        # print(len(count) ==len(res))
         return res == sorted(res) and len(count) == len(res)
         
