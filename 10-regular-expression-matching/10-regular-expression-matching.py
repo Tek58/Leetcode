@@ -1,5 +1,6 @@
 class Solution(object):
     def isMatch(self, s, p):
+        @lru_cache(maxsize=None)
         def dfs(i, j):
             if i >= len(s) and j >= len(p):
                 return True
@@ -14,4 +15,3 @@ class Solution(object):
                 return dfs(i+1, j+1)
             return False
         return dfs(0, 0)
-        
