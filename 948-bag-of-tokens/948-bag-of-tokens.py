@@ -2,7 +2,7 @@ class Solution:
     def bagOfTokensScore(self, tokens: List[int], P: int) -> int:
         score = 0
         tokens.sort()
-        # print("toke", tokens, "p", P, "score", score)
+        
         while tokens:
             if tokens[0] <= P:
                 P -= tokens[0]
@@ -14,6 +14,5 @@ class Solution:
                     P += tokens.pop()
                 else:
                     tokens.pop()
-                # break
-            # print("toke", tokens, "p", P, "score", score)
+                    
         return score
