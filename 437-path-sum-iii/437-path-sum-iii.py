@@ -10,7 +10,7 @@ class Solution:
         
         def dfs(node, pathSums):
             nonlocal numPaths
-            if node is None:
+            if not node:
                 return
             
             lastSum = pathSums[-1] 
