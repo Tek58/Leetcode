@@ -8,8 +8,8 @@ class Solution:
                     return "" if i == 0 else first[:i]
             i += 1
         
-        return "" if i == 0 else first[:i]
-        
-                
-                
-            
+        return "" if i == 0 else first
+
+    
+# Time Compexity O(n * m) n = len(strs) m = len(strs[i])
+# Space Complexity O(1)
