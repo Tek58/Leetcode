@@ -18,3 +18,7 @@ class Solution:
             index += 1
         return res
             
+
+# Time Complexity O(n)
+# Space Complixity O(1)
+        
