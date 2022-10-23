@@ -6,3 +6,7 @@ class Solution:
             if wanted in store:
                 return [store[wanted], i]
             store[nums[i]] = i
+            
+            
+# Time Complexity O(n)
+# Sace Complexity O(n)
