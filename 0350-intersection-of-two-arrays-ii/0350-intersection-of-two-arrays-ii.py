@@ -10,3 +10,5 @@ class Solution:
                     res.append(num)
         return res
     
+# Time Complexity O(N + M) N = len(nums1) M = len(nums2)
+# Space Complexity O(N + M)
