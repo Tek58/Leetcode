@@ -12,3 +12,6 @@ class Solution:
                 res[i] = str(res[i])
         
         return res
+    
+# Time Complexity O(n)
+# Space Complexity O(n)
