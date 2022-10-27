@@ -2,7 +2,7 @@ class Solution:
     def isPalindrome(self, s: str) -> bool:
         word = ''
         for letter in s:
-            if letter.isalpha() or letter.isnumeric():
+            if letter.isalnum():
                 word += letter.lower()
         
         left = 0
@@ -13,3 +13,6 @@ class Solution:
             left += 1
             right -= 1
         return True
+    
+# Time: O(N) N = len(s)
+# Space: O(N)
