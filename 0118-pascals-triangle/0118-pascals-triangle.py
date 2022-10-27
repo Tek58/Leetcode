@@ -12,4 +12,5 @@ class Solution:
         
         return res
                 
-            
+# Time: O(N * N - 1)
+#Space: O(N * N - 1)
