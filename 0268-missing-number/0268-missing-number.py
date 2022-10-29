@@ -5,3 +5,6 @@ class Solution:
             if nums[i] != i:
                 return i
         return len(nums)
+
+# Time: O(NlogN)
+# Space: O(1) without the sorting
