@@ -5,3 +5,5 @@ class Solution:
             if value == 1:
                 return key
             
+# Time: O(N)
+# Space: O(N)
