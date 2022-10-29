@@ -25,9 +25,9 @@ class Solution:
                 return False
             head = head.next
             prev = prev.next
-        
         return True
             
-            
+ # Time: O(N)
+# Space: O(1)
             
         
