@@ -6,3 +6,6 @@ class Solution:
             if sCount[key] < value:
                 return False
         return len(s) == len(t)
+    
+# Time: O(N + M)
+# Space: O(N + M)
